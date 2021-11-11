@@ -5,8 +5,8 @@ import { LoadingBar } from 'react-redux-loading';
 import { handleInitialData } from '../store/actions/shared';
 
 // Import all components here
-import Login from './Login';
-import Home from './Home';
+import Login from '../views/Login';
+import Dashboard from '../views/Dashboard';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -24,11 +24,11 @@ const App = () => {
                 <LoadingBar />
                 {authUser === null ? (
                     <Routes>
-                        <Route path='/' element={<Login />} />
+                        <Route path='/' element={<Dashboard />} />
                     </Routes>
                 ) : (
                     <Routes>
-                        <Route path='/' element={<Home />} />
+                        <Route path='/' element={<Login />} />
                     </Routes>
                 )}
             </div>
