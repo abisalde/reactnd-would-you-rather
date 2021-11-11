@@ -1,9 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import './index.css';
 import App from './components/App';
 import store from './store';
+
+// Import All CSS Parameters
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 render(
     <React.StrictMode>

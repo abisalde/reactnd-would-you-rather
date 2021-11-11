@@ -12,6 +12,13 @@ code {
         monospace;
 }
 
+@media screen and (min-width: 100px) and (max-width: 670px) {
+    .container div.justify-content-between.navbar-nav {
+        flex-flow: column-reverse;
+        justify-content: space-around;
+    }
+}
+
 .test-class {
     box-shadow: 1px 51px 0px rgb(1 1 1 / 6%);
     background-image: linear-gradient(-90deg, #efffff 0%, white 100%);
