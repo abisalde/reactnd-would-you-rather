@@ -1,17 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Container, Button } from 'react-bootstrap';
-import Avatar from './Avatar';
 import styles from '../assets/css/styles.module.css';
-import userImage from '../assets/img/bt1.png';
-import NavButton from './NavButton';
+import Avatar from './Avatar';
+import userImage from '../assets/img/tylerG.png';
+import { handleSetAuthUser } from '../redux/actions/authUser';
 
 const Navigation = () => {
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(handleSetAuthUser());
+    };
+
     return (
         <>
             <Navbar>
                 <Container>
-                    <Nav className='justify-content-between w-100'>
+                    <Nav className='justify-content-between w-100 mt-3 px-6'>
                         <div className={styles.navRight}>
                             <NavItem>
                                 <Nav.Link name='home' as={NavLink} to='/'>
@@ -38,7 +45,8 @@ const Navigation = () => {
                             </NavItem>
                         </div>
                         <div className={styles.navLeft}>
-                            <div className={styles.user}>
+                            <NavItem>
+                                <Navbar.Text>Hello, </Navbar.Text>
                                 <Navbar.Text>My Name</Navbar.Text>
                                 <Avatar
                                     width={40}
@@ -46,17 +54,21 @@ const Navigation = () => {
                                     avatarURL={userImage}
                                     name='Test User'
                                 />
-                            </div>
-                            <Button>
-                                <span className='glyphicon glyphicon-log-out'></span>
-                                Logout
-                            </Button>
+                            </NavItem>
+                            <NavItem>
+                                <Nav.Link>
+                                    <Button
+                                        onClick={handleLogout}
+                                        variant='light'
+                                    >
+                                        Logout
+                                    </Button>
+                                </Nav.Link>
+                            </NavItem>
                         </div>
                     </Nav>
                 </Container>
             </Navbar>
-
-            <NavButton />
         </>
     );
 };

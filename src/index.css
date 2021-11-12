@@ -12,11 +12,69 @@ code {
         monospace;
 }
 
+.container div.justify-content-between.navbar-nav {
+    border-bottom: 2px solid #06a158;
+}
+
 @media screen and (min-width: 100px) and (max-width: 670px) {
     .container div.justify-content-between.navbar-nav {
         flex-flow: column-reverse;
         justify-content: space-around;
     }
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link.active,
+.navbar-light .navbar-nav .nav-item .show > .nav-link {
+    color: #ffffff;
+    background-color: #06a158;
+    border-color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link:hover,
+.btn.btn-light:hover {
+    background-color: #06a158;
+    border-bottom: none;
+    color: #fff;
+}
+
+.nav-item {
+    margin-right: 16px;
+}
+
+.nav-item:nth-of-type(3),
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.nav-item .navbar-text {
+    padding-right: 12px;
+}
+
+.btn.btn-light {
+    background-color: #10b467;
+    color: #ffffff;
+    border: none;
+}
+
+button.btn.btn-primary {
+    background-color: #06a158;
+}
+
+.btn.btn-primary:disabled {
+    background-color: #9cf0c9;
+}
+
+button.nav-link {
+    color: #000000;
+    padding: 0.5rem 2rem;
+}
+
+button.nav-link:hover {
+    color: #000000;
+}
+
+ul.nav-tabs {
+    border-bottom: 2px solid #dee2e6;
 }
 
 .test-class {
