@@ -1,9 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
-import styles from '../assets/css/styles.module.css';
 import LoginImage from '../assets/img/sd1.png';
-import { setAuthUser } from '../store/actions/authUser';
+import { setAuthUser } from '../redux/actions/authUser';
+
+const styles = {
+    cardContainer: {
+        backgroundImage: 'linear-gradient(-90deg, #efffff 0%, white 100%)',
+        boxShadow: '0px 1px 29px 0px rgb(1 1 1 / 10%)',
+    },
+};
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -33,7 +39,7 @@ const Login = () => {
             <Container>
                 <Row className='align-items-center justify-content-center min-vh-100'>
                     <Col xs={12} md={6}>
-                        <Card className={styles.cardContainer}>
+                        <Card style={styles.cardContainer}>
                             <Card.Header className='text-center h-auto'>
                                 <Card.Title>
                                     Welcome to Would You Rather App!
@@ -99,7 +105,6 @@ const Login = () => {
                                             fontSize: '1.12rem',
                                             textTransform: 'none',
                                             fontWeight: 600,
-                                            backgroundColor: '#10b467',
                                             border: 'none',
                                         }}
                                     >

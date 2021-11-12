@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoadingBar } from 'react-redux-loading';
-import { handleInitialData } from '../store/actions/shared';
+import { handleInitialData } from '../redux/actions/shared';
 
 // Import all components here
-import Login from '../views/Login';
-import Dashboard from '../views/Dashboard';
+import Login from './Login';
+import Dashboard from './Dashboard';
 
 const App = () => {
     const dispatch = useDispatch();
-    const authUser = useSelector((state) => state.authUser);
+    const authUser = useSelector(({ authUser }) => authUser);
 
     console.log('Authed User: ', authUser);
 
@@ -24,11 +24,11 @@ const App = () => {
                 <LoadingBar />
                 {authUser === null ? (
                     <Routes>
-                        <Route path='/' element={<Dashboard />} />
+                        <Route path='/' element={<Login />} />
                     </Routes>
                 ) : (
                     <Routes>
-                        <Route path='/' element={<Login />} />
+                        <Route path='/' element={<Dashboard />} />
                     </Routes>
                 )}
             </div>
