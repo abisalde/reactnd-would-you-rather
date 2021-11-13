@@ -4,7 +4,7 @@ import { saveQuestionAnswer } from '../../utils/API';
 import {
     ADD_QUESTION,
     RECEIVE_QUESTIONS,
-    SET_USER_ANSWER,
+    SET_ANSWER_TO_QUESTION,
 } from './actionTypes';
 
 export const receiveQuestions = (questions) => {
@@ -16,7 +16,7 @@ export const receiveQuestions = (questions) => {
 
 export const handleAnswerToQuestion = (answer, questionId, authUser) => {
     return {
-        type: SET_USER_ANSWER,
+        type: SET_ANSWER_TO_QUESTION,
         answer,
         questionId,
         authUser,
