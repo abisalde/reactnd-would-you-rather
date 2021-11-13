@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
 
 const Avatar = (props) => {
@@ -13,6 +14,16 @@ const Avatar = (props) => {
             height={props.height}
         />
     );
+};
+
+Avatar.propTypes = {
+    props: PropTypes.shape({
+        avatarURL: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        className: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.number,
+    }),
 };
 
 export default Avatar;

@@ -16,11 +16,8 @@ code {
     border-bottom: 2px solid #06a158;
 }
 
-@media screen and (min-width: 100px) and (max-width: 670px) {
-    .container div.justify-content-between.navbar-nav {
-        flex-flow: column-reverse;
-        justify-content: space-around;
-    }
+.text-center.col-sm-4 {
+    border-right: 1px solid #dee2e6;
 }
 
 .navbar-light .navbar-nav .nav-item .nav-link.active,
@@ -75,6 +72,27 @@ button.nav-link:hover {
 
 ul.nav-tabs {
     border-bottom: 2px solid #dee2e6;
+}
+
+.pt-3.pb-2 .progress {
+    height: 30px;
+}
+
+@media screen and (min-width: 100px) and (max-width: 670px) {
+    .container div.justify-content-between.navbar-nav {
+        flex-flow: column-reverse;
+        justify-content: space-around;
+    }
+
+    .text-center.col-sm-4 {
+        padding-bottom: 10px;
+        border-right: 1px solid #ffffff;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    div.col-sm-8 {
+        padding-top: 16px;
+    }
 }
 
 .test-class {

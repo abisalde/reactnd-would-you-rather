@@ -6,7 +6,7 @@ import { handleInitialData } from '../redux/actions/shared';
 
 // Import all components here
 import Login from './Login';
-import Dashboard from './Dashboard';
+import AppRoutes from '../routes';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -27,9 +27,7 @@ const App = () => {
                         <Route path='/' element={<Login />} />
                     </Routes>
                 ) : (
-                    <Routes>
-                        <Route path='/' element={<Dashboard />} />
-                    </Routes>
+                    <AppRoutes />
                 )}
             </div>
         </Router>

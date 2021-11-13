@@ -1,15 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Container, Button } from 'react-bootstrap';
 import styles from '../assets/css/styles.module.css';
 import Avatar from './Avatar';
-import userImage from '../assets/img/tylerG.png';
+// import userImage from '../assets/img/tylerG.png';
 import { handleSetAuthUser } from '../redux/actions/authUser';
 
 const Navigation = () => {
     const dispatch = useDispatch();
-
+    const authUser = useSelector(({ authUser }) => authUser);
+    const users = useSelector(({ users }) => users);
     const handleLogout = () => {
         dispatch(handleSetAuthUser());
     };
@@ -29,7 +30,7 @@ const Navigation = () => {
                                 <Nav.Link
                                     name='new poll question'
                                     as={NavLink}
-                                    to='add'
+                                    to='/add'
                                 >
                                     New Question
                                 </Nav.Link>
@@ -38,7 +39,7 @@ const Navigation = () => {
                                 <Nav.Link
                                     name='leader board'
                                     as={NavLink}
-                                    to='leaderboard'
+                                    to='/leaderboard'
                                 >
                                     Leader Board
                                 </Nav.Link>
@@ -47,12 +48,18 @@ const Navigation = () => {
                         <div className={styles.navLeft}>
                             <NavItem>
                                 <Navbar.Text>Hello, </Navbar.Text>
-                                <Navbar.Text>My Name</Navbar.Text>
+                                <Navbar.Text>
+                                    {users[authUser].name}
+                                </Navbar.Text>
                                 <Avatar
                                     width={40}
                                     height={40}
-                                    avatarURL={userImage}
-                                    name='Test User'
+                                    avatarURL={
+                                        users[authUser].avatarURL
+                                            ? users[authUser].avatarURL
+                                            : 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
+                                    }
+                                    name={users[authUser].name}
                                 />
                             </NavItem>
                             <NavItem>
