@@ -12,14 +12,14 @@ const users = (state = {}, action) => {
                 ...action.users,
             };
         case SET_ANSWER_TO_USER:
-            const { authUser, questionId, answer } = action;
+            const { authUser, qid, answer } = action;
             return {
                 ...state,
                 [authUser]: {
                     ...state[authUser],
                     answers: {
                         ...state[authUser].answers,
-                        [questionId]: answer,
+                        [qid]: answer,
                     },
                 },
             };

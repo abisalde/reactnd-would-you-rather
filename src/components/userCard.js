@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 import Avatar from './Avatar';
 import styles from '../assets/css/styles.module.css';
@@ -10,7 +10,7 @@ import PollResult from './PollResult';
 import PollEntry from './PollEntry';
 
 const UserCard = (props) => {
-    const { q_id, unanswered } = props;
+    const { question_id, unanswered } = props;
 
     const authUser = useSelector(({ authUser }) => authUser);
     const questions = useSelector(({ questions }) => questions);
@@ -22,41 +22,9 @@ const UserCard = (props) => {
         POLL_QUESTION: 'POLL_QUESTION',
     };
 
-    let params = useParams();
+    const PollContent = (props) => {
+        const { pollType, question, unanswered } = props;
 
-    let question,
-        author,
-        pollType,
-        badURL = false;
-
-    if (q_id !== undefined) {
-        question = questions[q_id];
-        author = users[question.author];
-        pollType = pollTypes.POLL_ENTRY;
-    } else {
-        const { q_id } = params;
-        console.log('params', params);
-        question = questions[q_id];
-
-        console.log('Qestins', question);
-        const user = users[authUser];
-
-        console.log('Quse-Ca', user);
-
-        if (question === undefined) {
-            badURL = true;
-        } else {
-            author = users[question.author];
-            pollType = pollTypes.POLL_QUESTION;
-            if (Object.keys(user.answers).includes(q_id)) {
-                pollType = pollTypes.POLL_RESULT;
-            }
-        }
-    }
-
-    // console.log('author:::::', author);
-
-    const PollContent = () => {
         switch (pollType) {
             case pollTypes.POLL_ENTRY:
                 return (
@@ -85,9 +53,34 @@ const UserCard = (props) => {
         }
     };
 
-    if (badURL === true) {
-        return <Navigate to='/questions/bad_id' />;
+    let params = useParams();
+
+    let question, author, pollType;
+    // badURL = false;
+
+    if (question_id !== undefined) {
+        question = questions[question_id];
+        author = users[question.author];
+        pollType = pollTypes.POLL_ENTRY;
+    } else {
+        const { question_id } = params;
+        console.log('params', params);
+        question = questions[question_id];
+        const user = users[authUser];
+        if (question === undefined) {
+            console.log('ASSS');
+        } else {
+            author = users[question.author];
+            pollType = pollTypes.POLL_QUESTION;
+            if (Object.keys(user.answers).includes(question_id)) {
+                pollType = pollTypes.POLL_RESULT;
+            }
+        }
     }
+
+    // if (badURL === true) {
+    //     return <Navigate to='/questions/bad_id' />;
+    // }
 
     return (
         <Fragment>
@@ -130,8 +123,8 @@ const UserCard = (props) => {
 
 UserCard.propTypes = {
     props: PropTypes.shape({
-        q_id: PropTypes.string.isRequired,
-        unanswered: PropTypes.bool,
+        question_id: PropTypes.string.isRequired,
+        unanswered: PropTypes.bool.isRequired,
     }),
 };
 
