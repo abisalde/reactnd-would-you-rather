@@ -35,7 +35,7 @@ export const handleSaveQuestionAnswer = (authUser, questionId, answer) => {
     };
 };
 
-export const handleQuestionToUser = (author, id) => {
+export const handleQuestionToUser = ({ author, id }) => {
     return {
         type: SET_USER_TO_QUESTION,
         id,

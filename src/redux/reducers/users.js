@@ -29,7 +29,7 @@ const users = (state = {}, action) => {
                 ...state,
                 [author]: {
                     ...state[author],
-                    questions: state[author].questions.concat([id]),
+                    questions: state[author].questions.concat(id),
                 },
             };
         default:

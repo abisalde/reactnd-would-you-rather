@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
         <main>
             <Container>
                 <div className={styles.layoutContainer}>
-                    <div className='d-flex flex-column justify-content-center w-100 px-2 pb-5'>
+                    <div className='d-flex flex-column justify-content-center w-100 px-2 pb-3'>
                         {children}
                     </div>
                 </div>

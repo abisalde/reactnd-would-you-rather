@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
 
-const PollResult = () => {
+const PollResult = ({ question, user }) => {
+    // const { id, optionOne, optionTwo } = question;
+
+    console.log('POLL_REQUE', question);
+    console.log('POLL_USER', user);
+
     return (
         <Fragment>
             <Row>

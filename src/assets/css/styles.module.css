@@ -26,11 +26,41 @@
     border-radius: 4px;
     border: 1px solid #d9d9d9;
     box-shadow: 0px 1px 29px 0px rgb(1 1 1 / 10%);
-    background-image: linear-gradient(180deg, #ede6ff 0%, white 100%);
+    background-image: linear-gradient(-90deg, #efffff 0%, white 100%);
 }
 
 img.avatar {
     width: 120px;
     height: 120px;
     border: 2px solid #dee2e6;
+}
+
+.divider {
+    display: table;
+    height: auto;
+    text-align: center;
+    font-size: 16px;
+    margin: 16px 0;
+    text-transform: uppercase;
+    user-select: none;
+    font-weight: 600;
+}
+
+.divider:before,
+.divider:after {
+    content: '';
+    display: table-cell;
+    position: relative;
+    top: 50%;
+    width: 50%;
+    background: no-repeat;
+    background-image: url('../img/linw.png');
+}
+
+.divider:before {
+    background-position: right 16px top 50%;
+}
+
+.divider:after {
+    background-position: left 16px top 50%;
 }
