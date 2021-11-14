@@ -12,16 +12,14 @@ const questions = (state = {}, action) => {
                 ...action.questions,
             };
         case SET_ANSWER_TO_QUESTION:
-            const { authUser, questionId, answer } = action;
+            const { authUser, qid, answer } = action;
             return {
                 ...state,
-                [questionId]: {
-                    ...state[questionId],
+                [qid]: {
+                    ...state[qid],
                     [answer]: {
-                        ...state[questionId][answer],
-                        votes: state[questionId][answer].votes.concat([
-                            authUser,
-                        ]),
+                        ...state[qid][answer],
+                        votes: state[qid][answer].votes.concat(authUser),
                     },
                 },
             };

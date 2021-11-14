@@ -77,7 +77,6 @@ const PollQuestion = ({ authUser, question }) => {
 PollQuestion.propTypes = {
     question: PropTypes.object.isRequired,
     authUser: PropTypes.string.isRequired,
-    handleSaveQuestionAnswer: PropTypes.func.isRequired,
 };
 
 export default PollQuestion;

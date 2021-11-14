@@ -5,17 +5,17 @@ import Layout from '../components/Layout';
 import UserCard from '../components/userCard';
 import { Link } from 'react-router-dom';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
     const questions = useSelector(({ questions }) => questions);
     const users = useSelector(({ users }) => users);
     const authUser = useSelector(({ authUser }) => authUser);
 
     const answersID = Object.keys(users[authUser].answers);
-    const answeredPoll = Object.values(questions)
+    const unansweredPoll = Object.values(questions)
         .filter((question) => !answersID.includes(question.id))
         .sort((a, b) => b.timestamp - a.timestamp);
 
-    const unansweredPoll = Object.values(questions)
+    const answeredPoll = Object.values(questions)
         .filter((question) => answersID.includes(question.id))
         .sort((a, b) => b.timestamp - a.timestamp);
 
@@ -51,7 +51,6 @@ const Dashboard = (props) => {
                                         questions={questions}
                                         authUser={authUser}
                                         unanswered={true}
-                                        {...props}
                                     />
                                 );
                             })

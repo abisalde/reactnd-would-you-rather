@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 import Avatar from './Avatar';
 import styles from '../assets/css/styles.module.css';
@@ -9,13 +10,11 @@ import PollResult from './PollResult';
 import PollEntry from './PollEntry';
 
 const UserCard = (props) => {
-    const { users, questions, q_id, unanswered, authUser, match } = props;
+    const { q_id, unanswered } = props;
 
-    // console.log('users:::::', users);
-    // console.log('Questions:::::', questions);
-    // console.log('qid:::::', q_id);
-    // console.log('unanswered:::::', unanswered);
-    // console.log('authUser:::::', authUser);
+    const authUser = useSelector(({ authUser }) => authUser);
+    const questions = useSelector(({ questions }) => questions);
+    const users = useSelector(({ users }) => users);
 
     const pollTypes = {
         POLL_ENTRY: 'POLL_ENTRY',
@@ -23,21 +22,26 @@ const UserCard = (props) => {
         POLL_QUESTION: 'POLL_QUESTION',
     };
 
+    let params = useParams();
+
     let question,
         author,
         pollType,
         badURL = false;
-    // let params = useParams();
 
     if (q_id !== undefined) {
         question = questions[q_id];
         author = users[question.author];
         pollType = pollTypes.POLL_ENTRY;
     } else {
-        const { q_id } = match.params;
-        console.log('params', match.params);
+        const { q_id } = params;
+        console.log('params', params);
         question = questions[q_id];
+
+        console.log('Qestins', question);
         const user = users[authUser];
+
+        console.log('Quse-Ca', user);
 
         if (question === undefined) {
             badURL = true;
@@ -59,9 +63,23 @@ const UserCard = (props) => {
                     <PollEntry question={question} unanswered={unanswered} />
                 );
             case pollTypes.POLL_QUESTION:
-                return <PollQuestion question={question} authUser={authUser} />;
+                return (
+                    <PollQuestion
+                        question={question}
+                        authUser={authUser}
+                        params={params}
+                        {...props}
+                    />
+                );
             case pollTypes.POLL_RESULT:
-                return <PollResult question={question} />;
+                return (
+                    <PollResult
+                        question={question}
+                        params={params}
+                        {...props}
+                        user={users[authUser]}
+                    />
+                );
             default:
                 return;
         }
@@ -112,11 +130,8 @@ const UserCard = (props) => {
 
 UserCard.propTypes = {
     props: PropTypes.shape({
-        users: PropTypes.object.isRequired,
-        questions: PropTypes.object.isRequired,
         q_id: PropTypes.string.isRequired,
         unanswered: PropTypes.bool,
-        authUser: PropTypes.string.isRequired,
     }),
 };
 

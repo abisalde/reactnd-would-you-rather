@@ -1,4 +1,6 @@
-import { saveQuestionAnswer } from '../../utils/API';
+import { saveQuestion } from '../../utils/API';
+import { handleQuestionToUser } from './users';
+import { showLoading, hideLoading } from 'react-redux-loading';
 
 // import all actionTypes
 import {
@@ -14,11 +16,11 @@ export const receiveQuestions = (questions) => {
     };
 };
 
-export const handleAnswerToQuestion = (answer, questionId, authUser) => {
+export const handleAnswerToQuestion = (answer, qid, authUser) => {
     return {
         type: SET_ANSWER_TO_QUESTION,
         answer,
-        questionId,
+        qid,
         authUser,
     };
 };
@@ -30,12 +32,18 @@ export const handleAddQuestion = (question) => {
     };
 };
 
-export const handleSaveQuestion = (optionOneText, optionTwoText, authUser) => {
+export const handleSaveQuestion = (optionOneText, optionTwoText, author) => {
     return (dispatch) => {
-        return saveQuestionAnswer({
+        dispatch(showLoading());
+        return saveQuestion({
             optionOneText,
             optionTwoText,
-            authUser,
-        }).then((question) => dispatch(handleAddQuestion(question)));
+            author,
+        })
+            .then((question) => {
+                dispatch(handleAddQuestion(question));
+                dispatch(handleQuestionToUser(question));
+            })
+            .then(() => dispatch(hideLoading()));
     };
 };
