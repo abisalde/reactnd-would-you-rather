@@ -46,10 +46,7 @@ const Dashboard = () => {
                                 return (
                                     <UserCard
                                         key={question.id}
-                                        q_id={question.id}
-                                        users={users}
-                                        questions={questions}
-                                        authUser={authUser}
+                                        question_id={question.id}
                                         unanswered={true}
                                     />
                                 );
@@ -74,9 +71,6 @@ const Dashboard = () => {
                                     <UserCard
                                         key={question.id}
                                         q_id={question.id}
-                                        users={users}
-                                        authUser={authUser}
-                                        questions={questions}
                                         unanswered={false}
                                     />
                                 );
