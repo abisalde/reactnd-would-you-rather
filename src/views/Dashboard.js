@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { Card, Tab, Tabs } from 'react-bootstrap';
 import Layout from '../components/Layout';
-import UserCard from '../components/userCard';
 import { Link } from 'react-router-dom';
+import PollView from '../components/PollView';
 
 const Dashboard = () => {
     const questions = useSelector(({ questions }) => questions);
@@ -18,10 +18,6 @@ const Dashboard = () => {
     const answeredPoll = Object.values(questions)
         .filter((question) => answersID.includes(question.id))
         .sort((a, b) => b.timestamp - a.timestamp);
-
-    // console.log('AnswersID:::::', answersID);
-    // console.log('Answer:::::', answeredPoll);
-    // console.log('Unanswered:::::', unansweredPoll);
 
     return (
         <Fragment>
@@ -44,9 +40,11 @@ const Dashboard = () => {
                         ) : (
                             unansweredPoll.map((question) => {
                                 return (
-                                    <UserCard
+                                    <PollView
                                         key={question.id}
                                         question_id={question.id}
+                                        question={question}
+                                        author={users[question.author]}
                                         unanswered={true}
                                     />
                                 );
@@ -68,9 +66,11 @@ const Dashboard = () => {
                         ) : (
                             answeredPoll.map((question) => {
                                 return (
-                                    <UserCard
+                                    <PollView
                                         key={question.id}
-                                        q_id={question.id}
+                                        question_id={question.id}
+                                        question={question}
+                                        author={users[question.author]}
                                         unanswered={false}
                                     />
                                 );
