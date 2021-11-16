@@ -28,7 +28,7 @@ const Dashboard = () => {
                         title='Unanswered Questions'
                     >
                         {unansweredPoll.length === 0 ? (
-                            <Card className='text-center'>
+                            <Card className='text-cente mt-3'>
                                 <Card.Header>
                                     <Card.Title>
                                         No Unanswered Polls,{' '}
@@ -53,7 +53,7 @@ const Dashboard = () => {
                     </Tab.Pane>
                     <Tab.Pane eventKey='profile' title='Answered Questions'>
                         {answeredPoll.length === 0 ? (
-                            <Card className='text-center'>
+                            <Card className='text-center mt-3'>
                                 <Card.Header>
                                     <Card.Title>
                                         No Answered Polls,{' '}

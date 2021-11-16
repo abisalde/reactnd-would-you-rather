@@ -20,10 +20,10 @@ const PollQuestion = ({ id, question }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { answer } = values;
-        if (answer === undefined) {
-            setValidated(true);
-        } else {
+        if (answer !== '') {
             dispatch(handleSaveQuestionAnswer(authUser, id, answer));
+        } else {
+            setValidated(true);
         }
     };
 
@@ -48,7 +48,7 @@ const PollQuestion = ({ id, question }) => {
                             type='radio'
                             id='optionOne'
                             label={optionOne.text}
-                            value={optionOne.text}
+                            value='optionOne'
                             name='answer'
                             onChange={handleChange}
                         ></Form.Check>
@@ -57,7 +57,7 @@ const PollQuestion = ({ id, question }) => {
                             type='radio'
                             id='optionOne'
                             label={optionTwo.text}
-                            value={optionTwo.text}
+                            value='optionTwo'
                             name='answer'
                             onChange={handleChange}
                         ></Form.Check>

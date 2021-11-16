@@ -56,9 +56,9 @@ export const handleSaveQuestionAnswer = (authedUser, qid, answer) => {
             qid,
             answer,
         })
-            .then(() =>
-                dispatch(handleAnswerToQuestion({ authedUser, qid, answer }))
-            )
+            .then(() => {
+                dispatch(handleAnswerToQuestion(authedUser, qid, answer));
+            })
             .catch((e) =>
                 console.warn('Error in handleSaveQuestionAnswer: ', e)
             )
