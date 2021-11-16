@@ -1,4 +1,4 @@
-import { saveQuestion } from '../../utils/API';
+import { saveQuestion, saveQuestionAnswer } from '../../utils/API';
 import { handleQuestionToUser } from './users';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
@@ -6,7 +6,7 @@ import { showLoading, hideLoading } from 'react-redux-loading';
 import {
     ADD_QUESTION,
     RECEIVE_QUESTIONS,
-    SET_ANSWER_TO_QUESTION,
+    SET_QUESTION_ANSWER,
 } from './actionTypes';
 
 export const receiveQuestions = (questions) => {
@@ -16,12 +16,12 @@ export const receiveQuestions = (questions) => {
     };
 };
 
-export const handleAnswerToQuestion = (answer, qid, authUser) => {
+export const handleAnswerToQuestion = (authedUser, qid, answer) => {
     return {
-        type: SET_ANSWER_TO_QUESTION,
-        answer,
+        type: SET_QUESTION_ANSWER,
+        authedUser,
         qid,
-        authUser,
+        answer,
     };
 };
 
@@ -44,6 +44,24 @@ export const handleSaveQuestion = (optionOneText, optionTwoText, author) => {
                 dispatch(handleAddQuestion(question));
                 dispatch(handleQuestionToUser(question));
             })
+            .then(() => dispatch(hideLoading()));
+    };
+};
+
+export const handleSaveQuestionAnswer = (authedUser, qid, answer) => {
+    return (dispatch) => {
+        dispatch(showLoading());
+        return saveQuestionAnswer({
+            authedUser,
+            qid,
+            answer,
+        })
+            .then(() =>
+                dispatch(handleAnswerToQuestion({ authedUser, qid, answer }))
+            )
+            .catch((e) =>
+                console.warn('Error in handleSaveQuestionAnswer: ', e)
+            )
             .then(() => dispatch(hideLoading()));
     };
 };

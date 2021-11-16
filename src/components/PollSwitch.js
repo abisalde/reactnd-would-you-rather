@@ -10,7 +10,7 @@ import PollResult from './PollResult';
 import Layout from './Layout';
 
 const PollSwitch = () => {
-    const authUser = useSelector(({ authUser }) => authUser);
+    const authUser = useSelector(({ authedUser }) => authedUser);
     const questions = useSelector(({ questions }) => questions);
     const users = useSelector(({ users }) => users);
 
@@ -61,7 +61,10 @@ const PollSwitch = () => {
                             </Col>
                             <Col sm={8}>
                                 {answeredPoll ? (
-                                    <PollResult id={question_id} />
+                                    <PollResult
+                                        id={question_id}
+                                        question={question}
+                                    />
                                 ) : (
                                     <PollQuestion
                                         id={question_id}

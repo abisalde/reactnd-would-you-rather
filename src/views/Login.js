@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
 import LoginImage from '../assets/img/sd1.png';
-import { setAuthUser } from '../redux/actions/authUser';
+import { setAuthUser } from '../redux/actions/authedUser';
 
 const styles = {
     cardContainer: {

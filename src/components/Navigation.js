@@ -4,12 +4,12 @@ import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Container, Button } from 'react-bootstrap';
 import styles from '../assets/css/styles.module.css';
 import Avatar from './Avatar';
-// import userImage from '../assets/img/tylerG.png';
-import { handleSetAuthUser } from '../redux/actions/authUser';
+import { sayGreetings } from '../utils/functions';
+import { handleSetAuthUser } from '../redux/actions/authedUser';
 
 const Navigation = () => {
     const dispatch = useDispatch();
-    const authUser = useSelector(({ authUser }) => authUser);
+    const authUser = useSelector(({ authedUser }) => authedUser);
     const users = useSelector(({ users }) => users);
     const handleLogout = () => {
         dispatch(handleSetAuthUser());
@@ -47,7 +47,9 @@ const Navigation = () => {
                         </div>
                         <div className={styles.navLeft}>
                             <NavItem>
-                                <Navbar.Text>Hello, </Navbar.Text>
+                                <Navbar.Text className='text-mute'>
+                                    {sayGreetings()}
+                                </Navbar.Text>
                                 <Navbar.Text>
                                     {users[authUser].name}
                                 </Navbar.Text>

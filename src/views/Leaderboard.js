@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import ScoreCard from '../components/ScoreCard';
 
 const LeaderBoard = () => {
     return (
-        <div>
-            <h1>LeaderBoard</h1>
-        </div>
+        <Fragment>
+            <ScoreCard />
+        </Fragment>
     );
 };
 

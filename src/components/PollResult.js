@@ -1,54 +1,117 @@
 import React, { Fragment } from 'react';
-import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Row, Col, Card, ProgressBar, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { formatDate } from '../utils/functions';
+import { voteColor } from '../utils/functions';
+import VoteLabel from './VoteLabel';
 
-const PollResult = ({ question, user }) => {
-    // const { id, optionOne, optionTwo } = question;
+const PollResult = ({ question, id }) => {
+    const { optionOne, optionTwo, timestamp } = question;
 
-    console.log('POLL_REQUE', question);
-    console.log('POLL_USER', user);
+    const users = useSelector(({ users }) => users);
+    const authUser = useSelector(({ authedUser }) => authedUser);
+    const user = users[authUser];
 
+    const optionOneVotes = optionOne.votes.length;
+    const optionTwoVotes = optionTwo.votes.length;
+    const totalVotes = optionOneVotes + optionTwoVotes;
+    const userVote = user.answers[id];
+
+    const optionOnePercentage = Math.round((optionOneVotes / totalVotes) * 100);
+    const optionTwoPercentage = Math.round((optionTwoVotes / totalVotes) * 100);
+
+    let option1 = voteColor.secondary,
+        option2 = voteColor.secondary;
+    if (optionOneVotes > optionTwoVotes) {
+        option1 = voteColor.primary;
+    } else if (optionOneVotes < optionTwoVotes) {
+        option2 = voteColor.primary;
+    }
+
+    console.log('Color', option1.color, option2.color);
     return (
         <Fragment>
             <Row>
                 <Col xs={12}>
-                    <Card>
+                    <small className='text-muted' style={{ float: 'right' }}>
+                        {formatDate(timestamp)}
+                    </small>
+                    <Card.Title style={{ fontWeight: 600, fontSize: '25px' }}>
+                        Results:
+                    </Card.Title>
+                    <Card
+                        style={{
+                            color: `${option1.color}`,
+                            backgroundColor: `${option1.bgColor}`,
+                        }}
+                    >
                         <Card.Header>
+                            {userVote === 'optionOne' ? <VoteLabel /> : null}
                             <Card.Title>
                                 <span>Would you rather </span>
-                                <span>JavaScript</span>
+                                <span>{optionOne.text}</span>
                             </Card.Title>
                             <div className='pt-3 pb-2'>
-                                <ProgressBar now={50} label={`${50}%`} />
+                                <ProgressBar
+                                    now={optionOnePercentage}
+                                    label={`${optionOnePercentage}%`}
+                                    variant='success'
+                                />
                             </div>
                             <Card.Title
-                                style={{ fontSize: '14px' }}
+                                style={{ fontSize: '14px', color: '#000' }}
                                 className='text-center'
                             >
-                                <span>1</span> out of <span>5</span> votes
+                                <span>{optionOneVotes}</span> out of{' '}
+                                <span>{totalVotes}</span> votes
                             </Card.Title>
                         </Card.Header>
                     </Card>
-                    <Card className='mt-3'>
+                    <Card
+                        className='mt-3'
+                        style={{
+                            color: `${option2.color}`,
+                            backgroundColor: `${option2.bgColor}`,
+                        }}
+                    >
                         <Card.Header>
+                            {userVote === 'optionTwo' ? <VoteLabel /> : null}
                             <Card.Title>
                                 <span>Would you rather </span>
-                                <span>Python</span>
+                                <span>{optionTwo.text}</span>
                             </Card.Title>
                             <div className='pt-3 pb-2'>
-                                <ProgressBar now={50} label={`${50}%`} />
+                                <ProgressBar
+                                    now={optionTwoPercentage}
+                                    label={`${optionTwoPercentage}%`}
+                                    variant='success'
+                                />
                             </div>
                             <Card.Title
-                                style={{ fontSize: '14px' }}
+                                style={{ fontSize: '14px', color: '#000' }}
                                 className='text-center'
                             >
-                                <span>1</span> out of <span>5</span> votes
+                                <span>{optionTwoVotes}</span> out of{' '}
+                                <span>{totalVotes}</span> votes
                             </Card.Title>
                         </Card.Header>
                     </Card>
+                    <Button
+                        className='mt-2'
+                        style={{ float: 'right', borderColor: '#06a158' }}
+                    >
+                        Back Home
+                    </Button>
                 </Col>
             </Row>
         </Fragment>
     );
+};
+
+PollResult.propTypes = {
+    question: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
 };
 
 export default PollResult;

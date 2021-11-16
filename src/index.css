@@ -76,6 +76,8 @@ ul.nav-tabs {
 
 .pt-3.pb-2 .progress {
     height: 30px;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 @media screen and (min-width: 100px) and (max-width: 670px) {

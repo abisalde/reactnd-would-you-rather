@@ -10,7 +10,7 @@ import AppRoutes from '../routes';
 
 const App = () => {
     const dispatch = useDispatch();
-    const authUser = useSelector(({ authUser }) => authUser);
+    const authUser = useSelector(({ authedUser }) => authedUser);
 
     console.log('Authed User: ', authUser);
 

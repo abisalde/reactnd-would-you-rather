@@ -1,6 +1,6 @@
 import {
     RECEIVE_USERS,
-    SET_ANSWER_TO_USER,
+    SET_QUESTION_ANSWER,
     SET_USER_TO_QUESTION,
 } from '../actions/actionTypes';
 
@@ -11,14 +11,14 @@ const users = (state = {}, action) => {
                 ...state,
                 ...action.users,
             };
-        case SET_ANSWER_TO_USER:
-            const { authUser, qid, answer } = action;
+        case SET_QUESTION_ANSWER:
+            const { authedUser, qid, answer } = action;
             return {
                 ...state,
-                [authUser]: {
-                    ...state[authUser],
+                [authedUser]: {
+                    ...state[authedUser],
                     answers: {
-                        ...state[authUser].answers,
+                        ...state[authedUser].answers,
                         [qid]: answer,
                     },
                 },
