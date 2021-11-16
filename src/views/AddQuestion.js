@@ -14,7 +14,7 @@ const AddQuestion = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [validated, setValidated] = useState(false);
-    const authUser = useSelector(({ authUser }) => authUser);
+    const authUser = useSelector(({ authedUser }) => authedUser);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

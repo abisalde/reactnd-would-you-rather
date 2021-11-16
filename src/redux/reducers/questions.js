@@ -1,7 +1,7 @@
 import {
     ADD_QUESTION,
     RECEIVE_QUESTIONS,
-    SET_ANSWER_TO_QUESTION,
+    SET_QUESTION_ANSWER,
 } from '../actions/actionTypes';
 
 const questions = (state = {}, action) => {
@@ -11,15 +11,15 @@ const questions = (state = {}, action) => {
                 ...state,
                 ...action.questions,
             };
-        case SET_ANSWER_TO_QUESTION:
-            const { authUser, qid, answer } = action;
+        case SET_QUESTION_ANSWER:
+            const { authedUser, qid, answer } = action;
             return {
                 ...state,
                 [qid]: {
                     ...state[qid],
                     [answer]: {
                         ...state[qid][answer],
-                        votes: state[qid][answer].votes.concat(authUser),
+                        votes: state[qid][answer].votes.concat([authedUser]),
                     },
                 },
             };

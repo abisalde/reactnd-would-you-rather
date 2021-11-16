@@ -64,3 +64,36 @@ img.avatar {
 .divider:after {
     background-position: left 16px top 50%;
 }
+
+.voteLabel {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: baseline;
+    background-color: goldenrod;
+    color: #fff;
+    background-image: none;
+    font-weight: 700;
+    border: 0 solid gold;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    transform: translate(-100%);
+    left: calc(100% + 16px + 20px);
+    padding: 10px 20px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.voteLabel:after {
+    position: absolute;
+    content: '';
+    top: 100%;
+    background-color: transparent !important;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: 0;
+    border-style: solid;
+    border-width: 20px 20px 0 0;
+    border-color: transparent;
+    border-top-color: inherit;
+}

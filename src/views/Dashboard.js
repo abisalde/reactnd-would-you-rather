@@ -8,7 +8,7 @@ import PollView from '../components/PollView';
 const Dashboard = () => {
     const questions = useSelector(({ questions }) => questions);
     const users = useSelector(({ users }) => users);
-    const authUser = useSelector(({ authUser }) => authUser);
+    const authUser = useSelector(({ authedUser }) => authedUser);
 
     const answersID = Object.keys(users[authUser].answers);
     const unansweredPoll = Object.values(questions)

@@ -1,18 +1,16 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button, Form } from 'react-bootstrap';
 import NotFound from '../views/NotFound';
-import { useSelector } from 'react-redux';
-// import { handleSaveQuestionAnswer } from '../redux/actions/users';
+import { handleSaveQuestionAnswer } from '../redux/actions/questions';
 
-const PollQuestion = ({ id, question, author }) => {
-    // const dispatch = useDispatch();
+const PollQuestion = ({ id, question }) => {
+    const dispatch = useDispatch();
 
     const [values, setValues] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [validated, setValidated] = useState(false);
-    const authUser = useSelector(({ authUser }) => authUser);
+    const authUser = useSelector(({ authedUser }) => authedUser);
     const { optionOne, optionTwo } = question;
 
     const handleChange = (e) => {
@@ -22,30 +20,27 @@ const PollQuestion = ({ id, question, author }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { answer } = values;
-        console.log('Anssss', answer);
         if (answer === undefined) {
-            alert('NOT DONE');
+            setValidated(true);
         } else {
-            alert('DONE');
+            dispatch(handleSaveQuestionAnswer(authUser, id, answer));
         }
-
-        //     dispatch(
-        //         handleSaveQuestionAnswer(authUser, id, selectedOption)
-        //     );
     };
 
     if (question === null) {
         return <NotFound />;
     }
 
-    const disabled = setValues === '' ? true : false;
-
+    const disabled = !values;
     return (
         <Fragment>
             <Card.Title className='mb-auto' style={{ fontWeight: 600 }}>
                 Would you Rather ...
             </Card.Title>
             <Card.Body className='px-0 pb-0 pt-2'>
+                {validated ? (
+                    <Card.Text>Please select an option</Card.Text>
+                ) : null}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId='answer'>
                         <Form.Check
@@ -92,7 +87,6 @@ const PollQuestion = ({ id, question, author }) => {
 PollQuestion.propTypes = {
     question: PropTypes.object.isRequired,
     id: PropTypes.string.isRequired,
-    author: PropTypes.object.isRequired,
 };
 
 export default PollQuestion;
