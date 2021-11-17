@@ -40,14 +40,17 @@ const PollView = ({ question, unanswered, author }) => {
                                 avatarURL={
                                     author.avatarURL
                                         ? author.avatarURL
-                                        : 'https://picsum.photos/200/300'
+                                        : 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
                                 }
                                 name={author?.name}
                                 className={styles.avatar}
                             />
                         </Col>
                         <Col sm={8}>
-                            <Card.Title className='mb-auto'>
+                            <Card.Title
+                                className='mb-auto'
+                                style={{ fontWeight: 600 }}
+                            >
                                 Would you Rather
                             </Card.Title>
                             <Card.Body className='text-center card-body px-0 pb-0'>

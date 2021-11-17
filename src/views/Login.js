@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
 import LoginImage from '../assets/img/sd1.png';
-import { setAuthUser } from '../redux/actions/authedUser';
+import { setAuthUser } from '../redux/actions/authUser';
 
 const styles = {
     cardContainer: {
@@ -13,6 +15,8 @@ const styles = {
 
 const Login = () => {
     const dispatch = useDispatch();
+    const { state } = useLocation();
+    let navigate = useNavigate();
     const users = useSelector(({ users }) => users);
 
     const [userSelected, setUserSelected] = useState({ name: 'Select User' });
@@ -29,6 +33,7 @@ const Login = () => {
         if (userID !== '') {
             localStorage.setItem('user', JSON.stringify(users[userID]));
             dispatch(setAuthUser(userID));
+            navigate(state?.path || '/home');
         } else {
             alert(setErrorMessage('Please Select a User'));
         }
@@ -110,6 +115,20 @@ const Login = () => {
                                     >
                                         Sign In
                                     </Button>
+                                    <div
+                                        className='text-muted mt-2'
+                                        style={{ float: 'right' }}
+                                    >
+                                        <small>
+                                            Not a user?{' '}
+                                            <Link
+                                                to='/register'
+                                                className='px-1'
+                                            >
+                                                Register
+                                            </Link>
+                                        </small>
+                                    </div>
                                 </Form>
                             </Card.Body>
                         </Card>

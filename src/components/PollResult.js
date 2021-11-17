@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Card, ProgressBar, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { formatDate } from '../utils/functions';
 import { voteColor } from '../utils/functions';
@@ -10,8 +11,9 @@ const PollResult = ({ question, id }) => {
     const { optionOne, optionTwo, timestamp } = question;
 
     const users = useSelector(({ users }) => users);
-    const authUser = useSelector(({ authedUser }) => authedUser);
+    const authUser = useSelector(({ authUser }) => authUser);
     const user = users[authUser];
+    let navigate = useNavigate();
 
     const optionOneVotes = optionOne.votes.length;
     const optionTwoVotes = optionTwo.votes.length;
@@ -29,7 +31,10 @@ const PollResult = ({ question, id }) => {
         option2 = voteColor.primary;
     }
 
-    console.log('Color', option1.color, option2.color);
+    const handleClick = () => {
+        navigate('/home');
+    };
+
     return (
         <Fragment>
             <Row>
@@ -100,6 +105,7 @@ const PollResult = ({ question, id }) => {
                     <Button
                         className='mt-2'
                         style={{ float: 'right', borderColor: '#06a158' }}
+                        onClick={handleClick}
                     >
                         Back Home
                     </Button>

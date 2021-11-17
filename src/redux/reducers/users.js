@@ -1,5 +1,6 @@
 import {
     RECEIVE_USERS,
+    REGISTER_USER,
     SET_QUESTION_ANSWER,
     SET_USER_TO_QUESTION,
 } from '../actions/actionTypes';
@@ -31,6 +32,12 @@ const users = (state = {}, action) => {
                     ...state[author],
                     questions: state[author].questions.concat(id),
                 },
+            };
+        case REGISTER_USER:
+            const { user } = action;
+            return {
+                ...state,
+                [user.id]: user,
             };
         default:
             return state;
