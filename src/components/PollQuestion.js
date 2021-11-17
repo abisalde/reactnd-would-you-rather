@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button, Form } from 'react-bootstrap';
-import NotFound from '../views/NotFound';
 import { handleSaveQuestionAnswer } from '../redux/actions/questions';
 
 const PollQuestion = ({ id, question }) => {
@@ -10,7 +9,7 @@ const PollQuestion = ({ id, question }) => {
 
     const [values, setValues] = useState('');
     const [validated, setValidated] = useState(false);
-    const authUser = useSelector(({ authedUser }) => authedUser);
+    const authUser = useSelector(({ authUser }) => authUser);
     const { optionOne, optionTwo } = question;
 
     const handleChange = (e) => {
@@ -26,10 +25,6 @@ const PollQuestion = ({ id, question }) => {
             setValidated(true);
         }
     };
-
-    if (question === null) {
-        return <NotFound />;
-    }
 
     const disabled = !values;
     return (

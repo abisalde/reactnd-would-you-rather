@@ -8,7 +8,7 @@ import PollView from '../components/PollView';
 const Dashboard = () => {
     const questions = useSelector(({ questions }) => questions);
     const users = useSelector(({ users }) => users);
-    const authUser = useSelector(({ authedUser }) => authedUser);
+    const authUser = useSelector(({ authUser }) => authUser);
 
     const answersID = Object.keys(users[authUser].answers);
     const unansweredPoll = Object.values(questions)
@@ -28,7 +28,7 @@ const Dashboard = () => {
                         title='Unanswered Questions'
                     >
                         {unansweredPoll.length === 0 ? (
-                            <Card className='text-cente mt-3'>
+                            <Card className='text-center mt-3'>
                                 <Card.Header>
                                     <Card.Title>
                                         No Unanswered Polls,{' '}
@@ -57,8 +57,7 @@ const Dashboard = () => {
                                 <Card.Header>
                                     <Card.Title>
                                         No Answered Polls,{' '}
-                                        <span>{users[authUser].name}</span> Go
-                                        back <Link to='/'>here</Link> and answer
+                                        <span>{users[authUser].name}</span> Try
                                         some polls
                                     </Card.Title>
                                 </Card.Header>

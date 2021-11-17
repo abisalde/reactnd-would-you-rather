@@ -1,28 +1,30 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Container, Button } from 'react-bootstrap';
 import styles from '../assets/css/styles.module.css';
 import Avatar from './Avatar';
 import { sayGreetings } from '../utils/functions';
-import { handleSetAuthUser } from '../redux/actions/authedUser';
+import { handleSetAuthUser } from '../redux/actions/authUser';
 
 const Navigation = () => {
     const dispatch = useDispatch();
-    const authUser = useSelector(({ authedUser }) => authedUser);
+    let navigate = useNavigate();
+    const authUser = useSelector(({ authUser }) => authUser);
     const users = useSelector(({ users }) => users);
     const handleLogout = () => {
+        navigate('/');
         dispatch(handleSetAuthUser());
     };
 
     return (
         <>
-            <Navbar>
-                <Container>
+            <Container>
+                <Navbar>
                     <Nav className='justify-content-between w-100 mt-3 px-6'>
                         <div className={styles.navRight}>
                             <NavItem>
-                                <Nav.Link name='home' as={NavLink} to='/'>
+                                <Nav.Link name='home' as={NavLink} to='/home'>
                                     Home
                                 </Nav.Link>
                             </NavItem>
@@ -51,17 +53,17 @@ const Navigation = () => {
                                     {sayGreetings()}
                                 </Navbar.Text>
                                 <Navbar.Text>
-                                    {users[authUser].name}
+                                    {users[authUser]?.name}
                                 </Navbar.Text>
                                 <Avatar
                                     width={40}
                                     height={40}
                                     avatarURL={
-                                        users[authUser].avatarURL
+                                        users[authUser]?.avatarURL
                                             ? users[authUser].avatarURL
                                             : 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
                                     }
-                                    name={users[authUser].name}
+                                    name={users[authUser]?.name}
                                 />
                             </NavItem>
                             <NavItem>
@@ -76,8 +78,8 @@ const Navigation = () => {
                             </NavItem>
                         </div>
                     </Nav>
-                </Container>
-            </Navbar>
+                </Navbar>
+            </Container>
         </>
     );
 };

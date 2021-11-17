@@ -14,7 +14,7 @@ const AddQuestion = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [validated, setValidated] = useState(false);
-    const authUser = useSelector(({ authedUser }) => authedUser);
+    const authUser = useSelector(({ authUser }) => authUser);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -40,7 +40,7 @@ const AddQuestion = () => {
     };
 
     if (validated === true) {
-        return <Navigate to='/' />;
+        return <Navigate to='/home' />;
     }
 
     return (
@@ -90,13 +90,16 @@ const AddQuestion = () => {
                             }}
                         >
                             {isLoading ? (
-                                <Spinner
-                                    animation='border'
-                                    size='sm'
-                                    role='status'
-                                    aria-hidden='true'
-                                    variant='success'
-                                />
+                                <Fragment>
+                                    <Spinner
+                                        animation='border'
+                                        size='sm'
+                                        role='status'
+                                        aria-hidden='true'
+                                        variant='success'
+                                    />
+                                    <span className='ml-2'>....Loading</span>
+                                </Fragment>
                             ) : (
                                 'Submit'
                             )}
