@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 
 const NotFound = () => {
@@ -16,6 +17,14 @@ const NotFound = () => {
                     <Card.Subtitle className='pt-3'>
                         There's no POLL Question here, Go back Home.
                     </Card.Subtitle>
+                    <Link to='/home'>
+                        <Button
+                            className='mt-3'
+                            style={{ borderColor: '#06a158' }}
+                        >
+                            Home
+                        </Button>
+                    </Link>
                 </Card.Header>
             </Layout>
         </Fragment>

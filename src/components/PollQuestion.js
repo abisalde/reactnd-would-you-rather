@@ -34,7 +34,9 @@ const PollQuestion = ({ id, question }) => {
             </Card.Title>
             <Card.Body className='px-0 pb-0 pt-2'>
                 {validated ? (
-                    <Card.Text>Please select an option</Card.Text>
+                    <Card.Text className='text-danger'>
+                        Please select an option
+                    </Card.Text>
                 ) : null}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId='answer'>
@@ -50,7 +52,7 @@ const PollQuestion = ({ id, question }) => {
                         <Form.Check
                             className='mb-2'
                             type='radio'
-                            id='optionOne'
+                            id='optionTwo'
                             label={optionTwo.text}
                             value='optionTwo'
                             name='answer'

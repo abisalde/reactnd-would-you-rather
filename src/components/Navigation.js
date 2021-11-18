@@ -13,8 +13,8 @@ const Navigation = () => {
     const authUser = useSelector(({ authUser }) => authUser);
     const users = useSelector(({ users }) => users);
     const handleLogout = () => {
-        navigate('/');
         dispatch(handleSetAuthUser());
+        navigate('/');
     };
 
     return (
