@@ -19,8 +19,6 @@ const App = () => {
     const dispatch = useDispatch();
     const authUser = useSelector(({ authUser }) => authUser);
 
-    console.log('Authed User: ', authUser);
-
     useEffect(() => {
         dispatch(handleInitialData());
     }, [dispatch]);
