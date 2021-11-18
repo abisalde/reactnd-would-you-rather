@@ -28,8 +28,8 @@ To get started developing right away:
 
 -   Register if you don't like to use default name
 
-*   -   Enter Your First and Last Name
-*   -   Upload an Image, if you don't like to use default image
+    -   Enter Your First and Last Name
+    -   Upload an Image, if you don't like to use default image
 
 -   View Poll questions and answers
 -   Create a new poll question
