@@ -97,23 +97,6 @@ ul.nav-tabs {
     }
 }
 
-.test-class {
-    box-shadow: 1px 51px 0px rgb(1 1 1 / 6%);
-    background-image: linear-gradient(-90deg, #efffff 0%, white 100%);
-    color: #7650e0;
-    box-shadow: 0px 1px 29px 0px rgb(1 1 1 / 10%);
-    background-image: linear-gradient(180deg, #ede6ff 0%, white 100%);
-    background-color: #10b467;
-}
-
-.test-class::after {
-    top: 0;
-    content: '';
-    position: absolute;
-    transform: rotate(10deg);
-    background-color: #06a158;
-}
-
 .MuiCardHeader-root .MuiCardHeader-title {
     font-size: 1.12rem;
     font-weight: 600;
