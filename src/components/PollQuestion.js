@@ -45,6 +45,8 @@ const PollQuestion = ({ id, question }) => {
                             type='radio'
                             id='optionOne'
                             label={optionOne.text}
+                            aria-label={optionOne.text}
+                            aria-required='true'
                             value='optionOne'
                             name='answer'
                             onChange={handleChange}
@@ -54,6 +56,8 @@ const PollQuestion = ({ id, question }) => {
                             type='radio'
                             id='optionTwo'
                             label={optionTwo.text}
+                            aria-label={optionTwo.text}
+                            aria-required='true'
                             value='optionTwo'
                             name='answer'
                             onChange={handleChange}

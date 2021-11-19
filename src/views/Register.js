@@ -95,6 +95,8 @@ const Register = () => {
                                                 <input
                                                     type='file'
                                                     name='avatarURL'
+                                                    aria-label='avatarURL'
+                                                    aria-required='true'
                                                     id='avatarURL'
                                                     className='d-none'
                                                     onChange={imagePicker}
@@ -116,6 +118,8 @@ const Register = () => {
                                                     onChange={handleChange}
                                                     value={setValues.fName}
                                                     name='fName'
+                                                    aria-label='First Name'
+                                                    aria-required='true'
                                                 />
                                                 <Card.Text
                                                     className='text-danger d-flex flex-column'
@@ -145,6 +149,8 @@ const Register = () => {
                                                     onChange={handleChange}
                                                     value={setValues.lName}
                                                     name='lName'
+                                                    aria-label='Last Name'
+                                                    aria-required='true'
                                                 />
                                                 <Card.Text
                                                     className='text-danger d-flex flex-column'

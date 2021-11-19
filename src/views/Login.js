@@ -54,7 +54,14 @@ const Login = () => {
                                 </Card.Subtitle>
                             </Card.Header>
                             <Card.Body className='px-2'>
-                                <Card.Img src={LoginImage} alt='@Author' />
+                                <Card.Img
+                                    src={LoginImage}
+                                    alt='would-you-rather'
+                                    style={{
+                                        width: 'inherit',
+                                        height: 'inherit',
+                                    }}
+                                />
                                 <Card.Text
                                     className='py-2 text-center'
                                     style={{
@@ -76,7 +83,7 @@ const Login = () => {
                                         </div>
                                     ) : null}
                                     <Form.Select
-                                        aria-label='select username'
+                                        aria-label='select user'
                                         onChange={handleSelect}
                                     >
                                         <option value=''>
