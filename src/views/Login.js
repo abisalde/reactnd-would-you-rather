@@ -57,10 +57,6 @@ const Login = () => {
                                 <Card.Img
                                     src={LoginImage}
                                     alt='would-you-rather'
-                                    style={{
-                                        width: 'inherit',
-                                        height: 'inherit',
-                                    }}
                                 />
                                 <Card.Text
                                     className='py-2 text-center'
