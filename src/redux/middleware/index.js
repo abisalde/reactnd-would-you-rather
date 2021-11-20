@@ -1,5 +1,15 @@
 import thunk from 'redux-thunk';
-import logger from './logger';
-import { applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import { applyMiddleware, compose } from 'redux';
 
-export default applyMiddleware(thunk, logger);
+const logger = createLogger();
+
+let middleware = [];
+
+if (process.env.NODE_ENV === 'development') {
+    middleware = [...middleware, thunk, logger];
+} else {
+    middleware = [...middleware, thunk];
+}
+
+export default compose(applyMiddleware(...middleware));
